@@ -1,6 +1,6 @@
 import pytest
 
-from rps_game import CHOICES, WINNING_MATCHUPS, decide_winner, play_round
+from rps_game import CHOICES, RULES, WINNING_MATCHUPS, decide_winner, play_round
 
 
 def test_decide_winner_all_standard_outcomes():
@@ -17,6 +17,21 @@ def test_all_lizard_spock_matchups_are_supported():
         for loser in defeated_choices:
             assert decide_winner(winner, loser) == "win"
             assert decide_winner(loser, winner) == "lose"
+
+
+def test_rules_are_listed_in_requested_order():
+    assert RULES == (
+        ("scissors", "cuts", "paper"),
+        ("paper", "covers", "rock"),
+        ("rock", "crushes", "lizard"),
+        ("lizard", "poisons", "spock"),
+        ("spock", "smashes", "scissors"),
+        ("scissors", "decapitates", "lizard"),
+        ("lizard", "eats", "paper"),
+        ("paper", "disproves", "spock"),
+        ("spock", "vaporizes", "rock"),
+        ("rock", "crushes", "scissors"),
+    )
 
 
 def test_play_round_returns_message_and_choices():

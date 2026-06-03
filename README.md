@@ -10,6 +10,23 @@ The computer uses Python's `random` module to choose rock, paper, scissors, liza
 - Win, loss, and tie detection for the expanded Lizard-Spock rule set.
 - Modern Tkinter interface with five bold choice cards, colorful score cards, round feedback, and a reset button.
 - Reset button to clear the score and start fresh.
+- Rules panel listing every winning interaction in the expanded game.
+
+
+## Rules
+
+Each gesture defeats two other moves and loses to the remaining two.
+
+- Scissors cuts Paper
+- Paper covers Rock
+- Rock crushes Lizard
+- Lizard poisons Spock
+- Spock smashes Scissors
+- Scissors decapitates Lizard
+- Lizard eats Paper
+- Paper disproves Spock
+- Spock vaporizes Rock
+- Rock crushes Scissors
 
 ## Run the game
 

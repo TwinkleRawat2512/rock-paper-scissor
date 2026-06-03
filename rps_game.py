@@ -29,6 +29,18 @@ WINNING_MATCHUPS: dict[str, dict[str, str]] = {
         "scissors": "smashes",
     },
 }
+RULES: tuple[tuple[str, str, str], ...] = (
+    ("scissors", "cuts", "paper"),
+    ("paper", "covers", "rock"),
+    ("rock", "crushes", "lizard"),
+    ("lizard", "poisons", "spock"),
+    ("spock", "smashes", "scissors"),
+    ("scissors", "decapitates", "lizard"),
+    ("lizard", "eats", "paper"),
+    ("paper", "disproves", "spock"),
+    ("spock", "vaporizes", "rock"),
+    ("rock", "crushes", "scissors"),
+)
 
 
 @dataclass(frozen=True)

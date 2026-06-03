@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import tkinter as tk
 
-from rps_game import CHOICES, play_round
+from rps_game import CHOICES, RULES, play_round
 
 EMOJI_BY_CHOICE = {
     "rock": "🪨",
@@ -49,8 +49,8 @@ class RockPaperScissorsApp(tk.Tk):
     def __init__(self) -> None:
         super().__init__()
         self.title("Rock-Paper-Scissors-Lizard-Spock")
-        self.geometry("880x700")
-        self.minsize(780, 660)
+        self.geometry("920x820")
+        self.minsize(820, 760)
         self.configure(bg=COLORS["background"])
 
         self.wins = 0
@@ -97,6 +97,7 @@ class RockPaperScissorsApp(tk.Tk):
         self._build_scoreboard(card)
         self._build_choice_buttons(card)
         self._build_round_panel(card)
+        self._build_rules_panel(card)
 
         tk.Button(
             card,
@@ -168,6 +169,45 @@ class RockPaperScissorsApp(tk.Tk):
                 justify="center",
             )
             button.grid(row=row, column=column, sticky="nsew", padx=8, pady=8)
+
+
+    def _build_rules_panel(self, parent: tk.Frame) -> None:
+        rules_panel = tk.Frame(parent, bg=COLORS["panel_light"], padx=18, pady=16)
+        rules_panel.pack(fill="x", pady=(18, 0))
+
+        tk.Label(
+            rules_panel,
+            text="The Rules",
+            bg=COLORS["panel_light"],
+            fg=COLORS["text"],
+            font=("Helvetica", 16, "bold"),
+        ).pack(anchor="w")
+
+        tk.Label(
+            rules_panel,
+            text="Each gesture defeats two other moves and loses to the remaining two.",
+            bg=COLORS["panel_light"],
+            fg=COLORS["muted"],
+            font=("Helvetica", 10),
+            wraplength=680,
+            justify="left",
+        ).pack(anchor="w", pady=(4, 10))
+
+        rules_grid = tk.Frame(rules_panel, bg=COLORS["panel_light"])
+        rules_grid.pack(fill="x")
+        for index, (winner, action, loser) in enumerate(RULES):
+            row = index // 2
+            column = index % 2
+            rules_grid.columnconfigure(column, weight=1)
+            rule_text = f"• {winner.title()} {action} {loser.title()}"
+            tk.Label(
+                rules_grid,
+                text=rule_text,
+                bg=COLORS["panel_light"],
+                fg=COLORS["text"],
+                font=("Helvetica", 10, "bold"),
+                anchor="w",
+            ).grid(row=row, column=column, sticky="w", padx=(0, 18), pady=3)
 
     def _build_round_panel(self, parent: tk.Frame) -> None:
         round_panel = tk.Frame(parent, bg=COLORS["background"], padx=18, pady=18)

@@ -186,3 +186,40 @@ h1 {
     grid-template-columns: 1fr;
   }
 }
+
+.rules-panel {
+  margin-top: 24px;
+  padding: 22px;
+  border-radius: 22px;
+  background: var(--card-light);
+  text-align: left;
+}
+
+.rules-panel h2 {
+  margin: 0 0 8px;
+  font-size: 1.4rem;
+}
+
+.rules-panel p {
+  margin: 0 0 14px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.rules-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px 24px;
+  margin: 0;
+  padding-left: 20px;
+}
+
+.rules-list li {
+  line-height: 1.45;
+}
+
+@media (max-width: 620px) {
+  .rules-list {
+    grid-template-columns: 1fr;
+  }
+}
