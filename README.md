@@ -19,19 +19,7 @@ python app.py
 
 Tkinter is included with most standard Python installations. If the window does not open, ensure your Python installation includes Tk support.
 
-
-## Run the online version
-
-Open `web/index.html` directly in a browser, or serve the folder locally before deploying it to any static hosting service:
-
-```bash
-python -m http.server 8000 --directory web
-```
-
-Then visit `http://localhost:8000`.
-
 ## Project files
 
 - `app.py` - Tkinter user interface.
 - `rps_game.py` - Reusable game logic and random computer choices.
-- `web/` - Browser-based online version with HTML, CSS, and JavaScript.
