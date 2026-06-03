@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rock-Paper-Scissors-Lizard-Spock Online</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="game-card" aria-labelledby="game-title">
+    <section class="hero">
+      <p class="eyebrow">Play online</p>
+      <h1 id="game-title">Rock-Paper-Scissors-Lizard-Spock</h1>
+      <p class="description">
+        Choose one of five moves and challenge the computer. Every computer choice is randomized in the browser.
+      </p>
+    </section>
+
+    <section class="scoreboard" aria-label="Scoreboard">
+      <div>
+        <span class="score-label">Wins</span>
+        <strong id="wins">0</strong>
+      </div>
+      <div>
+        <span class="score-label">Losses</span>
+        <strong id="losses">0</strong>
+      </div>
+      <div>
+        <span class="score-label">Ties</span>
+        <strong id="ties">0</strong>
+      </div>
+    </section>
+
+    <section class="choices" aria-label="Choose your move">
+      <button class="choice-button" type="button" data-choice="rock">
+        <span aria-hidden="true">🪨</span>
+        Rock
+      </button>
+      <button class="choice-button" type="button" data-choice="paper">
+        <span aria-hidden="true">📄</span>
+        Paper
+      </button>
+      <button class="choice-button" type="button" data-choice="scissors">
+        <span aria-hidden="true">✂️</span>
+        Scissors
+      </button>
+      <button class="choice-button" type="button" data-choice="lizard">
+        <span aria-hidden="true">🦎</span>
+        Lizard
+      </button>
+      <button class="choice-button" type="button" data-choice="spock">
+        <span aria-hidden="true">🖖</span>
+        Spock
+      </button>
+    </section>
+
+    <section class="round-panel" aria-live="polite">
+      <div class="pick-grid">
+        <article>
+          <span class="pick-label">You chose</span>
+          <strong id="player-choice">—</strong>
+        </article>
+        <article>
+          <span class="pick-label">Computer chose</span>
+          <strong id="computer-choice">—</strong>
+        </article>
+      </div>
+      <p id="result-message" class="result-message">Pick a move to start the game.</p>
+    </section>
+
+
+    <section class="rules-panel" aria-labelledby="rules-title">
+      <h2 id="rules-title">The Rules</h2>
+      <p>Each gesture defeats two other moves and loses to the remaining two.</p>
+      <ul class="rules-list">
+        <li><strong>Scissors</strong> cuts Paper</li>
+        <li><strong>Paper</strong> covers Rock</li>
+        <li><strong>Rock</strong> crushes Lizard</li>
+        <li><strong>Lizard</strong> poisons Spock</li>
+        <li><strong>Spock</strong> smashes Scissors</li>
+        <li><strong>Scissors</strong> decapitates Lizard</li>
+        <li><strong>Lizard</strong> eats Paper</li>
+        <li><strong>Paper</strong> disproves Spock</li>
+        <li><strong>Spock</strong> vaporizes Rock</li>
+        <li><strong>Rock</strong> crushes Scissors</li>
+      </ul>
+    </section>
+
+    <button id="reset-button" class="reset-button" type="button">Reset score</button>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
