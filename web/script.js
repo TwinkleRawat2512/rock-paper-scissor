@@ -1,13 +1,32 @@
-const choices = ["rock", "paper", "scissors"];
-const winningMoves = {
-  rock: "scissors",
-  paper: "rock",
-  scissors: "paper",
+const choices = ["rock", "paper", "scissors", "lizard", "spock"];
+const winningMatchups = {
+  rock: {
+    scissors: "crushes",
+    lizard: "crushes",
+  },
+  paper: {
+    rock: "covers",
+    spock: "disproves",
+  },
+  scissors: {
+    paper: "cuts",
+    lizard: "decapitates",
+  },
+  lizard: {
+    paper: "eats",
+    spock: "poisons",
+  },
+  spock: {
+    rock: "vaporizes",
+    scissors: "smashes",
+  },
 };
 const emojiByChoice = {
   rock: "🪨",
   paper: "📄",
   scissors: "✂️",
+  lizard: "🦎",
+  spock: "🖖",
 };
 
 const score = {
@@ -36,11 +55,15 @@ function decideWinner(player, computer) {
     return "tie";
   }
 
-  return winningMoves[player] === computer ? "win" : "lose";
+  return winningMatchups[player][computer] ? "win" : "lose";
 }
 
 function formatChoice(choice) {
   return `${emojiByChoice[choice]} ${choice[0].toUpperCase()}${choice.slice(1)}`;
+}
+
+function describeMatchup(winner, loser) {
+  return `${formatChoice(winner)} ${winningMatchups[winner][loser]} ${formatChoice(loser)}.`;
 }
 
 function buildMessage(outcome, player, computer) {
@@ -49,10 +72,10 @@ function buildMessage(outcome, player, computer) {
   }
 
   if (outcome === "win") {
-    return `You win! ${formatChoice(player)} beats ${formatChoice(computer)}.`;
+    return `You win! ${describeMatchup(player, computer)}`;
   }
 
-  return `You lose! ${formatChoice(computer)} beats ${formatChoice(player)}.`;
+  return `You lose! ${describeMatchup(computer, player)}`;
 }
 
 function updateScore(outcome) {

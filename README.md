@@ -1,14 +1,14 @@
-# Rock-Paper-Scissors Game
+# Rock-Paper-Scissors-Lizard-Spock Game
 
-A simple Python Rock-Paper-Scissors game where a player competes against the computer.
-The computer uses Python's `random` module to choose rock, paper, or scissors, and the game includes a Tkinter GUI for interactive play.
+A simple Python Rock-Paper-Scissors-Lizard-Spock game where a player competes against the computer.
+The computer uses Python's `random` module to choose rock, paper, scissors, lizard, or Spock, and the game includes a Tkinter GUI for interactive play.
 
 ## Features
 
-- Play rock, paper, or scissors against the computer.
+- Play rock, paper, scissors, lizard, or Spock against the computer.
 - Randomized computer choices each round.
-- Win, loss, and tie detection.
-- Modern Tkinter interface with bold choice cards, colorful score cards, round feedback, and a reset button.
+- Win, loss, and tie detection for the expanded Lizard-Spock rule set.
+- Modern Tkinter interface with five bold choice cards, colorful score cards, round feedback, and a reset button.
 - Reset button to clear the score and start fresh.
 
 ## Run the game
@@ -33,5 +33,5 @@ Then visit `http://localhost:8000`.
 ## Project files
 
 - `app.py` - Tkinter user interface.
-- `rps_game.py` - Reusable game logic and random computer choices.
+- `rps_game.py` - Reusable game logic and random computer choices for all five moves.
 - `web/` - Browser-based online version with HTML, CSS, and JavaScript.

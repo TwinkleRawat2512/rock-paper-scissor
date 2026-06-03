@@ -1,4 +1,4 @@
-"""Tkinter GUI for a Rock-Paper-Scissors game."""
+"""Tkinter GUI for a Rock-Paper-Scissors-Lizard-Spock game."""
 
 from __future__ import annotations
 
@@ -10,12 +10,16 @@ EMOJI_BY_CHOICE = {
     "rock": "🪨",
     "paper": "📄",
     "scissors": "✂️",
+    "lizard": "🦎",
+    "spock": "🖖",
 }
 
 TAGLINE_BY_CHOICE = {
     "rock": "Crushes scissors",
     "paper": "Covers rock",
     "scissors": "Cuts paper",
+    "lizard": "Poisons Spock",
+    "spock": "Smashes scissors",
 }
 
 COLORS = {
@@ -29,6 +33,7 @@ COLORS = {
     "win": "#22c55e",
     "lose": "#fb7185",
     "tie": "#facc15",
+    "purple": "#a78bfa",
 }
 
 OUTCOME_COLORS = {
@@ -39,13 +44,13 @@ OUTCOME_COLORS = {
 
 
 class RockPaperScissorsApp(tk.Tk):
-    """Interactive Rock-Paper-Scissors desktop application."""
+    """Interactive Rock-Paper-Scissors-Lizard-Spock desktop application."""
 
     def __init__(self) -> None:
         super().__init__()
-        self.title("Rock-Paper-Scissors")
-        self.geometry("760x620")
-        self.minsize(680, 580)
+        self.title("Rock-Paper-Scissors-Lizard-Spock")
+        self.geometry("880x700")
+        self.minsize(780, 660)
         self.configure(bg=COLORS["background"])
 
         self.wins = 0
@@ -73,15 +78,15 @@ class RockPaperScissorsApp(tk.Tk):
 
         tk.Label(
             card,
-            text="⚡ Rock-Paper-Scissors",
+            text="⚡ Rock-Paper-Scissors-Lizard-Spock",
             bg=COLORS["panel"],
             fg=COLORS["text"],
-            font=("Helvetica", 28, "bold"),
+            font=("Helvetica", 26, "bold"),
         ).pack(pady=(0, 8))
 
         tk.Label(
             card,
-            text="A brighter battle arena with score cards, bold choices, and instant round feedback.",
+            text="A brighter battle arena with five fighters, score cards, and instant rule explanations.",
             bg=COLORS["panel"],
             fg=COLORS["muted"],
             font=("Helvetica", 12),
@@ -142,25 +147,27 @@ class RockPaperScissorsApp(tk.Tk):
         choices_frame = tk.Frame(parent, bg=COLORS["panel"])
         choices_frame.pack(fill="x", pady=(0, 26))
 
-        for column, choice in enumerate(CHOICES):
+        for index, choice in enumerate(CHOICES):
+            row = index // 3
+            column = index % 3
             choices_frame.columnconfigure(column, weight=1)
             button = tk.Button(
                 choices_frame,
                 text=f"{EMOJI_BY_CHOICE[choice]}\n{choice.title()}\n{TAGLINE_BY_CHOICE[choice]}",
                 command=lambda selected=choice: self.play(selected),
-                bg=COLORS["accent_dark"],
+                bg=COLORS["accent_dark"] if choice != "spock" else COLORS["purple"],
                 fg=COLORS["text"],
                 activebackground=COLORS["accent"],
                 activeforeground=COLORS["background"],
                 bd=0,
                 relief="flat",
                 cursor="hand2",
-                font=("Helvetica", 13, "bold"),
+                font=("Helvetica", 12, "bold"),
                 padx=16,
                 pady=18,
                 justify="center",
             )
-            button.grid(row=0, column=column, sticky="nsew", padx=8)
+            button.grid(row=row, column=column, sticky="nsew", padx=8, pady=8)
 
     def _build_round_panel(self, parent: tk.Frame) -> None:
         round_panel = tk.Frame(parent, bg=COLORS["background"], padx=18, pady=18)

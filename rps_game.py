@@ -1,4 +1,4 @@
-"""Core game logic for Rock-Paper-Scissors."""
+"""Core game logic for Rock-Paper-Scissors-Lizard-Spock."""
 
 from __future__ import annotations
 
@@ -6,17 +6,34 @@ import random
 from dataclasses import dataclass
 from typing import Iterable
 
-CHOICES: tuple[str, ...] = ("rock", "paper", "scissors")
-WINNING_MOVES: dict[str, str] = {
-    "rock": "scissors",
-    "paper": "rock",
-    "scissors": "paper",
+CHOICES: tuple[str, ...] = ("rock", "paper", "scissors", "lizard", "spock")
+WINNING_MATCHUPS: dict[str, dict[str, str]] = {
+    "rock": {
+        "scissors": "crushes",
+        "lizard": "crushes",
+    },
+    "paper": {
+        "rock": "covers",
+        "spock": "disproves",
+    },
+    "scissors": {
+        "paper": "cuts",
+        "lizard": "decapitates",
+    },
+    "lizard": {
+        "paper": "eats",
+        "spock": "poisons",
+    },
+    "spock": {
+        "rock": "vaporizes",
+        "scissors": "smashes",
+    },
 }
 
 
 @dataclass(frozen=True)
 class RoundResult:
-    """Result data for one round of Rock-Paper-Scissors."""
+    """Result data for one round of Rock-Paper-Scissors-Lizard-Spock."""
 
     player_choice: str
     computer_choice: str
@@ -45,9 +62,17 @@ def decide_winner(player_choice: str, computer_choice: str) -> str:
 
     if player == computer:
         return "tie"
-    if WINNING_MOVES[player] == computer:
+    if computer in WINNING_MATCHUPS[player]:
         return "win"
     return "lose"
+
+
+def describe_matchup(winning_choice: str, losing_choice: str) -> str:
+    """Return a sentence fragment explaining why one choice beats another."""
+    winner = normalize_choice(winning_choice)
+    loser = normalize_choice(losing_choice)
+    action = WINNING_MATCHUPS[winner][loser]
+    return f"{winner.title()} {action} {loser.title()}."
 
 
 def play_round(player_choice: str, computer_choice: str | None = None) -> RoundResult:
@@ -59,9 +84,9 @@ def play_round(player_choice: str, computer_choice: str | None = None) -> RoundR
     if outcome == "tie":
         message = "It's a tie!"
     elif outcome == "win":
-        message = f"You win! {player.title()} beats {computer}."
+        message = f"You win! {describe_matchup(player, computer)}"
     else:
-        message = f"You lose! {computer.title()} beats {player}."
+        message = f"You lose! {describe_matchup(computer, player)}"
 
     return RoundResult(
         player_choice=player,
